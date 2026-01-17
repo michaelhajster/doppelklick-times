@@ -39,3 +39,9 @@ npm-debug.log*
 # Python
 *.egg-info/
 .eggs/
+
+# Large data files (Audio)
+data/*/audio/
+*.mp3
+*.wav
+*.vtt

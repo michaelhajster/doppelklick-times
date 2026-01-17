@@ -1,55 +1,32 @@
 'use client'
 
 import { useState, useRef, useEffect } from 'react'
+import ReactMarkdown from 'react-markdown'
 
 interface Message {
   role: 'user' | 'assistant'
   content: string
   model?: string
+  mode?: string
+  tone?: string
   provider?: string
 }
 
-const COMPLEX_QUESTIONS = [
-  {
-    category: "STRATEGIE",
-    question: "Wie baue ich als Finanzdienstleister eine Personal Brand auf TikTok auf, ohne cringe zu wirken?",
-    tag: "P. 01"
-  },
-  {
-    category: "PSYCHOLOGIE",
-    question: "Welche psychologischen Trigger nutzt Mr. Doppelklick um Aufmerksamkeit zu halten?",
-    tag: "P. 02"
-  },
-  {
-    category: "FRAMEWORK",
-    question: "Erklar mir das 4-Saulen-System fur Content und wie ich es auf meine Nische anwende",
-    tag: "P. 03"
-  },
-  {
-    category: "MONETARISIERUNG",
-    question: "Wie strukturiere ich meinen Content-Funnel von Reichweite bis zum Sale?",
-    tag: "P. 04"
-  },
-  {
-    category: "DIFFERENZIERUNG",
-    question: "Wie finde ich meine eigene Kategorie statt den Marktfuhrer zu kopieren?",
-    tag: "P. 05"
-  },
+const EXAMPLE_QUESTIONS = [
+  { category: "STRATEGIE", question: "Wie baue ich eine starke Personal Brand auf Social Media auf?" },
+  { category: "HOOKS", question: "Welche Hook-Techniken funktionieren am besten für mehr Reichweite?" },
+  { category: "CONTENT", question: "Wie entwickle ich ein wiedererkennbares Content-Format?" },
+  { category: "FUNNEL", question: "Wie strukturiere ich einen Content-Funnel von Reichweite bis zum Verkauf?" },
+  { category: "NISCHE", question: "Wie finde und dominiere ich meine eigene Nische?" },
 ]
-
-function formatAnswer(text: string): string {
-  return text
-    .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>')
-    .replace(/\n\n/g, '</p><p>')
-    .replace(/^- /gm, '<li>')
-    .replace(/#(\d+)/g, '<span class="tag ml-1">#$1</span>')
-}
 
 export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
-  const [model, setModel] = useState('opus-4.5')
+  const [model, setModel] = useState<'gpt-4.1' | 'opus-4.5'>('gpt-4.1')
+  const [mode, setMode] = useState<'full' | 'rag'>('full')
+  const [tone, setTone] = useState<'professional' | 'casual'>('professional')
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
 
@@ -76,8 +53,9 @@ export default function Home() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           question,
-          mode: model === 'opus-4.5' ? 'rag' : 'full',
-          model: model,
+          mode,
+          model,
+          tone,
           top_k: 40,
           profile: 'mr.doppelklick',
           data_root: 'data'
@@ -90,6 +68,8 @@ export default function Home() {
         role: 'assistant',
         content: data.answer || data.error || 'Keine Antwort erhalten',
         model: data.model,
+        mode: data.mode,
+        tone: data.tone,
         provider: data.provider
       }
 
@@ -109,6 +89,10 @@ export default function Home() {
     e.preventDefault()
     askQuestion(input)
   }
+
+  const getModelLabel = () => model === 'gpt-4.1' ? 'GPT-4.1' : 'Opus 4.5'
+  const getModeLabel = () => mode === 'full' ? 'Full Context' : 'RAG'
+  const getToneLabel = () => tone === 'professional' ? 'Professionell' : 'Locker'
 
   const currentDate = new Date().toLocaleDateString('de-DE', {
     weekday: 'long',
@@ -143,21 +127,51 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Model selector bar */}
-          <div className="flex justify-between items-center py-3 border-t border-[var(--ink)]">
-            <div className="flex items-center gap-4">
-              <span className="text-[10px] uppercase tracking-[0.15em]">AI Engine:</span>
-              <select
-                value={model}
-                onChange={(e) => setModel(e.target.value)}
-                className="model-selector"
-              >
-                <option value="opus-4.5">Claude Opus 4.5</option>
-                <option value="gpt-4.1">GPT-4.1</option>
-              </select>
+          {/* Controls bar */}
+          <div className="flex flex-wrap justify-between items-center py-3 border-t border-[var(--ink)] gap-4">
+            <div className="flex items-center gap-6">
+              {/* Model */}
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] uppercase tracking-[0.15em]">Model:</span>
+                <select
+                  value={model}
+                  onChange={(e) => setModel(e.target.value as 'gpt-4.1' | 'opus-4.5')}
+                  className="model-selector"
+                >
+                  <option value="gpt-4.1">GPT-4.1</option>
+                  <option value="opus-4.5">Opus 4.5</option>
+                </select>
+              </div>
+
+              {/* Mode */}
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] uppercase tracking-[0.15em]">Mode:</span>
+                <select
+                  value={mode}
+                  onChange={(e) => setMode(e.target.value as 'full' | 'rag')}
+                  className="model-selector"
+                >
+                  <option value="full">Full Context</option>
+                  <option value="rag">RAG (Top 40)</option>
+                </select>
+              </div>
+
+              {/* Tone */}
+              <div className="flex items-center gap-2">
+                <span className="text-[10px] uppercase tracking-[0.15em]">Stil:</span>
+                <select
+                  value={tone}
+                  onChange={(e) => setTone(e.target.value as 'professional' | 'casual')}
+                  className="model-selector"
+                >
+                  <option value="professional">Professionell</option>
+                  <option value="casual">Locker</option>
+                </select>
+              </div>
             </div>
-            <div className="text-[10px] uppercase tracking-[0.15em]">
-              {model === 'opus-4.5' ? 'Anthropic / RAG Mode' : 'OpenAI / Full Context'}
+
+            <div className="text-[10px] uppercase tracking-[0.15em] opacity-70">
+              {model === 'opus-4.5' ? 'Anthropic' : 'OpenAI'} / {getModeLabel()} / {getToneLabel()}
             </div>
           </div>
         </div>
@@ -204,11 +218,15 @@ export default function Home() {
                     </div>
                     <div className="flex justify-between">
                       <span>Model:</span>
-                      <span>{model === 'opus-4.5' ? 'Opus 4.5' : 'GPT-4.1'}</span>
+                      <span>{getModelLabel()}</span>
                     </div>
                     <div className="flex justify-between">
                       <span>Mode:</span>
-                      <span>Full Context</span>
+                      <span>{getModeLabel()}</span>
+                    </div>
+                    <div className="flex justify-between">
+                      <span>Stil:</span>
+                      <span>{getToneLabel()}</span>
                     </div>
                   </div>
                 </div>
@@ -221,21 +239,32 @@ export default function Home() {
             {/* Questions Section */}
             <div className="double-line mb-6"></div>
             <div className="flex justify-between items-center mb-6">
-              <h3 className="text-[10px] uppercase tracking-[0.2em]">Spezialisierte Anfragen</h3>
+              <h3 className="text-[10px] uppercase tracking-[0.2em]">Beispiel-Anfragen</h3>
               <span className="text-[10px] uppercase tracking-[0.2em]">Klicke zum Starten</span>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {COMPLEX_QUESTIONS.map((q, i) => (
+              {EXAMPLE_QUESTIONS.slice(0, 3).map((q, i) => (
                 <button
                   key={i}
                   onClick={() => askQuestion(q.question)}
                   className="text-left p-4 border border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors group"
                 >
-                  <div className="flex justify-between items-start mb-3">
-                    <span className="tag group-hover:border-[var(--paper)]">{q.category}</span>
-                    <span className="text-[10px] opacity-50">{q.tag}</span>
-                  </div>
+                  <span className="tag group-hover:border-[var(--paper)] mb-3 inline-block">{q.category}</span>
+                  <p className="font-headline text-sm leading-relaxed">
+                    {q.question}
+                  </p>
+                </button>
+              ))}
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+              {EXAMPLE_QUESTIONS.slice(3).map((q, i) => (
+                <button
+                  key={i}
+                  onClick={() => askQuestion(q.question)}
+                  className="text-left p-4 border border-[var(--ink)] hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors group"
+                >
+                  <span className="tag group-hover:border-[var(--paper)] mb-3 inline-block">{q.category}</span>
                   <p className="font-headline text-sm leading-relaxed">
                     {q.question}
                   </p>
@@ -268,13 +297,29 @@ export default function Home() {
                         </span>
                       </div>
                       <span className="text-[10px] uppercase tracking-[0.15em] opacity-50">
-                        Full Context / 121 Videos
+                        {msg.mode?.toUpperCase()} / {msg.tone === 'professional' ? 'PROFESSIONELL' : 'LOCKER'}
                       </span>
                     </div>
-                    <div
-                      className="answer-content"
-                      dangerouslySetInnerHTML={{ __html: `<p>${formatAnswer(msg.content)}</p>` }}
-                    />
+                    <div className="prose prose-neutral max-w-none">
+                      <ReactMarkdown
+                        components={{
+                          h1: ({children}) => <h1 className="text-2xl font-bold mt-6 mb-3 border-b border-[var(--ink)]/30 pb-2">{children}</h1>,
+                          h2: ({children}) => <h2 className="text-xl font-bold mt-5 mb-2">{children}</h2>,
+                          h3: ({children}) => <h3 className="text-lg font-semibold mt-4 mb-2">{children}</h3>,
+                          p: ({children}) => <p className="mb-3 leading-relaxed text-[15px]">{children}</p>,
+                          ul: ({children}) => <ul className="mb-4 space-y-1 ml-4">{children}</ul>,
+                          ol: ({children}) => <ol className="mb-4 space-y-1 list-decimal ml-6">{children}</ol>,
+                          li: ({children}) => <li className="leading-relaxed text-[15px] pl-1">{children}</li>,
+                          strong: ({children}) => <strong className="font-semibold">{children}</strong>,
+                          em: ({children}) => <em className="italic">{children}</em>,
+                          blockquote: ({children}) => <blockquote className="border-l-4 border-[var(--ink)]/40 pl-4 italic my-4 opacity-80">{children}</blockquote>,
+                          code: ({children}) => <code className="bg-[var(--ink)]/10 px-1.5 py-0.5 text-sm font-mono rounded">{children}</code>,
+                          hr: () => <hr className="my-6 border-t border-[var(--ink)]/30" />,
+                        }}
+                      >
+                        {msg.content}
+                      </ReactMarkdown>
+                    </div>
                   </div>
                 )}
               </div>
@@ -287,7 +332,7 @@ export default function Home() {
                   <span className="text-[10px] uppercase tracking-[0.15em]">(PROCESSING)</span>
                 </div>
                 <div className="mt-4 font-mono text-sm loading-cursor">
-                  Analysiere 121 Transkripte
+                  Analysiere {mode === 'full' ? '121' : '40'} Transkripte
                 </div>
               </div>
             )}
@@ -325,7 +370,7 @@ export default function Home() {
           <div className="mt-4 flex justify-between text-[10px] uppercase tracking-[0.15em] opacity-50">
             <span>@mr.doppelklick</span>
             <span>121 Videos / {model === 'opus-4.5' ? 'Anthropic' : 'OpenAI'}</span>
-            <span>v2.0</span>
+            <span>v2.1</span>
           </div>
         </form>
       </div>

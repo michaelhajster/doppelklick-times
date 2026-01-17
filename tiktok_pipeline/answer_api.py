@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 """
-FastAPI service with selectable modes and models:
+FastAPI service with selectable modes, models, and tone:
 - full: full-context answering using all transcripts
 - rag: hybrid RAG (embeddings retrieval + full transcripts of top_k)
 - Models: GPT-4.1, Opus 4.5 (Claude)
+- Tone: professional, casual
 """
 
 from __future__ import annotations
@@ -70,28 +71,42 @@ def load_index(profile_dir: Path):
     return meta, emb
 
 
-SYSTEM_PROMPT = """Du bist Mr. Doppelklick's AI-Gehirn - ein Experte für Content Marketing, Personal Branding und Social Media Strategie.
+def get_system_prompt(tone: str = "professional") -> str:
+    base = """Du bist ein KI-Assistent, der auf dem Content von Mr. Doppelklick (@mr.doppelklick) basiert.
 
-DEINE PERSÖNLICHKEIT:
-- Du sprichst wie Mr. Doppelklick: direkt, authentisch, manchmal mit Slang ("Bruder", "Digga", "safe")
-- Du bist kein langweiliger Corporate-Bot, sondern ein echter Marketing-Homie
-- Du gibst konkrete, umsetzbare Tipps - kein BlaBla
+DEIN WISSENSBEREICH:
+- Content Marketing & Social Media Strategie
+- Personal Branding & Positionierung
+- TikTok, Instagram, YouTube Growth
+- Hooks, Storytelling & Formatentwicklung
+- Sales Funnels & Monetarisierung
+- Zielgruppen & Nischen-Strategien
 
-REGELN:
-1. Antworte NUR basierend auf dem gegebenen Kontext (121 TikTok-Transkripte)
-2. Wenn etwas nicht im Kontext steht, sag das ehrlich
-3. Zitiere relevante Video-IDs als Quellen
-4. Strukturiere deine Antworten klar mit Bullet Points
-5. Gib am Ende immer ein knackiges Fazit
+WICHTIGE REGELN:
+1. Antworte ausschließlich basierend auf dem gegebenen Kontext (TikTok-Transkripte)
+2. Wenn eine Information nicht im Kontext enthalten ist, sage das ehrlich
+3. Strukturiere deine Antworten klar mit Überschriften und Aufzählungen
+4. Gib konkrete, umsetzbare Empfehlungen
+5. Fasse am Ende die wichtigsten Punkte zusammen"""
 
-DEIN WISSEN UMFASST:
-- Content Marketing Strategien
-- Personal Branding Aufbau
-- TikTok/Instagram/YouTube Growth
-- Hooks und Storytelling
-- Funnel-Denken und Sales
-- Zielgruppen und Nischen
-- Formatentwicklung"""
+    if tone == "casual":
+        style = """
+
+STIL:
+- Schreibe locker und authentisch, wie ein erfahrener Mentor
+- Verwende "du" und sprich den Leser direkt an
+- Sei enthusiastisch aber substanziell
+- Nutze gelegentlich Metaphern und Beispiele aus dem Alltag"""
+    else:  # professional
+        style = """
+
+STIL:
+- Schreibe professionell und präzise
+- Verwende klare, geschäftliche Sprache
+- Fokussiere auf Fakten und bewährte Methoden
+- Formuliere sachlich aber verständlich"""
+
+    return base + style
 
 
 def openai_answer(model: str, system: str, user: str) -> str:
@@ -140,13 +155,14 @@ class AnswerRequest(BaseModel):
     question: str
     mode: str = "full"
     model: str = "gpt-4.1"
+    tone: str = "professional"
     top_k: int = 30
     include_captions: bool = False
     profile: str = "mr.doppelklick"
     data_root: str = "data"
 
 
-app = FastAPI(title="Mr. Doppelklick AI", version="2.0")
+app = FastAPI(title="Mr. Doppelklick AI", version="2.1")
 
 app.add_middleware(
     CORSMiddleware,
@@ -161,17 +177,19 @@ app.add_middleware(
 async def answer(req: AnswerRequest):
     unified, all_md, profile_dir = load_dataset(req.profile, req.data_root)
     records = unified.get("records", [])
+    system_prompt = get_system_prompt(req.tone)
 
     if req.mode == "full":
         context = all_md
-        user = f"FRAGE: {req.question}\n\nKONTEXT (121 TikTok-Transkripte):\n{context}"
-        answer_text, provider = get_answer(req.model, SYSTEM_PROMPT, user)
+        user = f"FRAGE: {req.question}\n\nKONTEXT ({len(records)} TikTok-Transkripte von @mr.doppelklick):\n{context}"
+        answer_text, provider = get_answer(req.model, system_prompt, user)
         return {
             "mode": "full",
             "answer": answer_text,
             "sources": "all",
             "model": req.model,
             "provider": provider,
+            "tone": req.tone,
             "total_videos": len(records)
         }
 
@@ -209,8 +227,8 @@ async def answer(req: AnswerRequest):
         sources.append({"id": vid, "url": rec.get("url"), "score": score})
 
     context = "\n\n".join(context_parts)
-    user = f"FRAGE: {req.question}\n\nKONTEXT (Top {top_k} relevante Videos):\n{context}"
-    answer_text, provider = get_answer(req.model, SYSTEM_PROMPT, user)
+    user = f"FRAGE: {req.question}\n\nKONTEXT (Top {top_k} relevante Videos von @mr.doppelklick):\n{context}"
+    answer_text, provider = get_answer(req.model, system_prompt, user)
 
     return {
         "mode": "rag",
@@ -218,20 +236,25 @@ async def answer(req: AnswerRequest):
         "sources": sources,
         "top_k": top_k,
         "model": req.model,
-        "provider": provider
+        "provider": provider,
+        "tone": req.tone
     }
 
 
 @app.get("/health")
 async def health():
-    return {"status": "ok", "version": "2.0", "models": ["gpt-4.1", "opus-4.5"]}
+    return {"status": "ok", "version": "2.1", "models": ["gpt-4.1", "opus-4.5"]}
 
 
 @app.get("/models")
 async def models():
     return {
         "available": [
-            {"id": "gpt-4.1", "name": "GPT-4.1", "provider": "openai"},
-            {"id": "opus-4.5", "name": "Claude Opus 4.5", "provider": "anthropic"},
+            {"id": "gpt-4.1", "name": "GPT-4.1", "provider": "openai", "recommended_mode": "full"},
+            {"id": "opus-4.5", "name": "Claude Opus 4.5", "provider": "anthropic", "recommended_mode": "rag"},
+        ],
+        "tones": [
+            {"id": "professional", "name": "Professionell"},
+            {"id": "casual", "name": "Locker"},
         ]
     }
