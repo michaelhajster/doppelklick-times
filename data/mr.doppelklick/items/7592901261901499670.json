@@ -1,0 +1,27 @@
+{
+  "id": "7592901261901499670",
+  "url": "https://www.tiktok.com/@mr.doppelklick/video/7592901261901499670",
+  "description": "Marketing ist toll! #marketing #branding #socialmediamarketing #viral #fyp ",
+  "timestamp": 1767860100,
+  "view_count": 3411,
+  "like_count": 224,
+  "comment_count": 5,
+  "repost_count": 17,
+  "uploader_id": "7518106757659575318",
+  "uploader": "mr.doppelklick",
+  "source": "tiktok",
+  "extracted_at": "2026-01-16T18:50:45.829062+00:00",
+  "title": "Marketing ist toll! #marketing #branding #socialmediamarketing #viral #fyp ",
+  "duration": 0,
+  "embed_url": "https://www.tiktok.com/embed/v2/7592901261901499670",
+  "embed_video_url": null,
+  "music_play_url": "https://sf77-ies-music-sg.tiktokcdn.com/obj/tos-alisg-ve-2774/oMMQjY8L7D6feXVr0VqKV7A4QRwMegfAMWcfAp",
+  "audio_path": "audio/7592901261901499670.mp3",
+  "audio_ext": "mp3",
+  "transcript": {
+    "text": "and a sitar",
+    "model": "gpt-4o-transcribe",
+    "provider": "openai",
+    "created_at": "2026-01-16T19:55:13.081871+00:00"
+  }
+}

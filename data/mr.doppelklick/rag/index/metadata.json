@@ -1,0 +1,856 @@
+{
+  "model": "text-embedding-3-large",
+  "created_at": "2026-01-16T22:42:02.430554+00:00",
+  "count": 121,
+  "ids": [
+    "7596038746831670550",
+    "7595568844337401110",
+    "7594189738198961431",
+    "7593488751574142230",
+    "7593457343854152962",
+    "7592901261901499670",
+    "7592637043851791638",
+    "7592229218512129302",
+    "7592209792282692886",
+    "7591576665373920534",
+    "7591249863396904214",
+    "7590842877668789526",
+    "7590146799453687062",
+    "7589639311889321238",
+    "7589278836718685462",
+    "7588617676554046742",
+    "7587826459134184726",
+    "7587163038608952578",
+    "7587001774087752982",
+    "7586681197539953942",
+    "7586052020163972374",
+    "7584802093664439554",
+    "7584566438027857174",
+    "7584376300630986006",
+    "7584202616503094550",
+    "7583769702787206422",
+    "7583021979406437654",
+    "7582949839504166166",
+    "7582548237849005334",
+    "7582273931436936451",
+    "7581937053731015958",
+    "7580907939527937302",
+    "7580766966177139990",
+    "7580450573518982403",
+    "7580033233874734358",
+    "7579678739399707926",
+    "7579203607489269014",
+    "7578904562753490198",
+    "7578588215272115478",
+    "7578503388518763798",
+    "7577353236173131030",
+    "7576978775687056662",
+    "7576717735124618518",
+    "7575588316117011734",
+    "7575569716446629142",
+    "7573150745365581078",
+    "7572555229334359318",
+    "7572180793217387798",
+    "7571807566490209538",
+    "7571076111795375382",
+    "7570447877290413334",
+    "7570400005375266050",
+    "7569954115636317462",
+    "7569636151951101206",
+    "7568453321342602518",
+    "7567438148230319382",
+    "7567306383402519830",
+    "7567075791754792214",
+    "7566664535973793047",
+    "7566551690653011223",
+    "7565633713371925763",
+    "7565124817452813571",
+    "7564360647765462294",
+    "7564048196410821910",
+    "7563049083846479107",
+    "7563043501949160726",
+    "7562562198795537686",
+    "7562223496185548054",
+    "7561918488625810710",
+    "7561567736900439318",
+    "7561404967777570070",
+    "7559587072495947030",
+    "7559332056375856406",
+    "7558455318548679958",
+    "7557014363245219094",
+    "7556242294765063446",
+    "7555157937216359702",
+    "7554862673180101910",
+    "7554332570612223254",
+    "7554090196975881494",
+    "7553688228025453846",
+    "7553578398996598038",
+    "7552976014553451798",
+    "7551823507764546838",
+    "7551091348099714326",
+    "7550354812437679382",
+    "7549616460587355414",
+    "7546749898327182614",
+    "7545899682552171798",
+    "7545138702670925078",
+    "7544015012717956374",
+    "7542949078540324118",
+    "7540961299899976982",
+    "7540697470527933718",
+    "7540642350205291798",
+    "7539896632234478870",
+    "7538913485770624258",
+    "7537067513054645526",
+    "7536609467861863702",
+    "7536147715466595586",
+    "7535567796713934102",
+    "7535053954959428886",
+    "7534993773697256726",
+    "7534451863698083094",
+    "7532624752188378390",
+    "7532160800467864854",
+    "7531827711241702678",
+    "7531411304838401302",
+    "7531025576723778838",
+    "7530732597828193558",
+    "7530240329094581526",
+    "7529877803223764246",
+    "7529505466293013782",
+    "7529179882589359382",
+    "7528791532552473878",
+    "7528467963528219926",
+    "7528407692352752918",
+    "7528023764009766166",
+    "7525429004183047446",
+    "7522819594906553622",
+    "7522604497647029526"
+  ],
+  "meta": [
+    {
+      "id": "7596038746831670550",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7596038746831670550",
+      "timestamp": 1768590595,
+      "text_len": 1445
+    },
+    {
+      "id": "7595568844337401110",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7595568844337401110",
+      "timestamp": 1768481188,
+      "text_len": 2587
+    },
+    {
+      "id": "7594189738198961431",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7594189738198961431",
+      "timestamp": 1768160093,
+      "text_len": 3087
+    },
+    {
+      "id": "7593488751574142230",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7593488751574142230",
+      "timestamp": 1767996879,
+      "text_len": 1885
+    },
+    {
+      "id": "7593457343854152962",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7593457343854152962",
+      "timestamp": 1767989566,
+      "text_len": 2740
+    },
+    {
+      "id": "7592901261901499670",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7592901261901499670",
+      "timestamp": 1767860100,
+      "text_len": 88
+    },
+    {
+      "id": "7592637043851791638",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7592637043851791638",
+      "timestamp": 1767798576,
+      "text_len": 473
+    },
+    {
+      "id": "7592229218512129302",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7592229218512129302",
+      "timestamp": 1767703624,
+      "text_len": 1424
+    },
+    {
+      "id": "7592209792282692886",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7592209792282692886",
+      "timestamp": 1767699103,
+      "text_len": 503
+    },
+    {
+      "id": "7591576665373920534",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7591576665373920534",
+      "timestamp": 1767551688,
+      "text_len": 1078
+    },
+    {
+      "id": "7591249863396904214",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7591249863396904214",
+      "timestamp": 1767475598,
+      "text_len": 4712
+    },
+    {
+      "id": "7590842877668789526",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7590842877668789526",
+      "timestamp": 1767380837,
+      "text_len": 2313
+    },
+    {
+      "id": "7590146799453687062",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7590146799453687062",
+      "timestamp": 1767218769,
+      "text_len": 2542
+    },
+    {
+      "id": "7589639311889321238",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7589639311889321238",
+      "timestamp": 1767100614,
+      "text_len": 3407
+    },
+    {
+      "id": "7589278836718685462",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7589278836718685462",
+      "timestamp": 1767016684,
+      "text_len": 2917
+    },
+    {
+      "id": "7588617676554046742",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7588617676554046742",
+      "timestamp": 1766862744,
+      "text_len": 2067
+    },
+    {
+      "id": "7587826459134184726",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7587826459134184726",
+      "timestamp": 1766678523,
+      "text_len": 1270
+    },
+    {
+      "id": "7587163038608952578",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7587163038608952578",
+      "timestamp": 1766524058,
+      "text_len": 785
+    },
+    {
+      "id": "7587001774087752982",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7587001774087752982",
+      "timestamp": 1766486515,
+      "text_len": 1891
+    },
+    {
+      "id": "7586681197539953942",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7586681197539953942",
+      "timestamp": 1766411871,
+      "text_len": 2528
+    },
+    {
+      "id": "7586052020163972374",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7586052020163972374",
+      "timestamp": 1766265380,
+      "text_len": 1224
+    },
+    {
+      "id": "7584802093664439554",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7584802093664439554",
+      "timestamp": 1765974360,
+      "text_len": 1353
+    },
+    {
+      "id": "7584566438027857174",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7584566438027857174",
+      "timestamp": 1765919492,
+      "text_len": 1086
+    },
+    {
+      "id": "7584376300630986006",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7584376300630986006",
+      "timestamp": 1765875230,
+      "text_len": 1977
+    },
+    {
+      "id": "7584202616503094550",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7584202616503094550",
+      "timestamp": 1765834782,
+      "text_len": 2285
+    },
+    {
+      "id": "7583769702787206422",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7583769702787206422",
+      "timestamp": 1765733989,
+      "text_len": 3478
+    },
+    {
+      "id": "7583021979406437654",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7583021979406437654",
+      "timestamp": 1765559893,
+      "text_len": 1427
+    },
+    {
+      "id": "7582949839504166166",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7582949839504166166",
+      "timestamp": 1765543098,
+      "text_len": 2812
+    },
+    {
+      "id": "7582548237849005334",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7582548237849005334",
+      "timestamp": 1765449596,
+      "text_len": 2710
+    },
+    {
+      "id": "7582273931436936451",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7582273931436936451",
+      "timestamp": 1765385724,
+      "text_len": 2241
+    },
+    {
+      "id": "7581937053731015958",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7581937053731015958",
+      "timestamp": 1765307290,
+      "text_len": 1900
+    },
+    {
+      "id": "7580907939527937302",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7580907939527937302",
+      "timestamp": 1765067682,
+      "text_len": 1656
+    },
+    {
+      "id": "7580766966177139990",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7580766966177139990",
+      "timestamp": 1765034856,
+      "text_len": 1537
+    },
+    {
+      "id": "7580450573518982403",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7580450573518982403",
+      "timestamp": 1764961189,
+      "text_len": 2616
+    },
+    {
+      "id": "7580033233874734358",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7580033233874734358",
+      "timestamp": 1764864021,
+      "text_len": 1348
+    },
+    {
+      "id": "7579678739399707926",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7579678739399707926",
+      "timestamp": 1764781482,
+      "text_len": 2971
+    },
+    {
+      "id": "7579203607489269014",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7579203607489269014",
+      "timestamp": 1764670863,
+      "text_len": 100
+    },
+    {
+      "id": "7578904562753490198",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7578904562753490198",
+      "timestamp": 1764601235,
+      "text_len": 1124
+    },
+    {
+      "id": "7578588215272115478",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7578588215272115478",
+      "timestamp": 1764527576,
+      "text_len": 1684
+    },
+    {
+      "id": "7578503388518763798",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7578503388518763798",
+      "timestamp": 1764507826,
+      "text_len": 3162
+    },
+    {
+      "id": "7577353236173131030",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7577353236173131030",
+      "timestamp": 1764240039,
+      "text_len": 1214
+    },
+    {
+      "id": "7576978775687056662",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7576978775687056662",
+      "timestamp": 1764152852,
+      "text_len": 2692
+    },
+    {
+      "id": "7576717735124618518",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7576717735124618518",
+      "timestamp": 1764092071,
+      "text_len": 2017
+    },
+    {
+      "id": "7575588316117011734",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7575588316117011734",
+      "timestamp": 1763829108,
+      "text_len": 4090
+    },
+    {
+      "id": "7575569716446629142",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7575569716446629142",
+      "timestamp": 1763824778,
+      "text_len": 1527
+    },
+    {
+      "id": "7573150745365581078",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7573150745365581078",
+      "timestamp": 1763261588,
+      "text_len": 1128
+    },
+    {
+      "id": "7572555229334359318",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7572555229334359318",
+      "timestamp": 1763122913,
+      "text_len": 3126
+    },
+    {
+      "id": "7572180793217387798",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7572180793217387798",
+      "timestamp": 1763035735,
+      "text_len": 2319
+    },
+    {
+      "id": "7571807566490209538",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7571807566490209538",
+      "timestamp": 1762948835,
+      "text_len": 1830
+    },
+    {
+      "id": "7571076111795375382",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7571076111795375382",
+      "timestamp": 1762778532,
+      "text_len": 1913
+    },
+    {
+      "id": "7570447877290413334",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7570447877290413334",
+      "timestamp": 1762632256,
+      "text_len": 2164
+    },
+    {
+      "id": "7570400005375266050",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7570400005375266050",
+      "timestamp": 1762621110,
+      "text_len": 2924
+    },
+    {
+      "id": "7569954115636317462",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7569954115636317462",
+      "timestamp": 1762517296,
+      "text_len": 2241
+    },
+    {
+      "id": "7569636151951101206",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7569636151951101206",
+      "timestamp": 1762443262,
+      "text_len": 2667
+    },
+    {
+      "id": "7568453321342602518",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7568453321342602518",
+      "timestamp": 1762167865,
+      "text_len": 3035
+    },
+    {
+      "id": "7567438148230319382",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7567438148230319382",
+      "timestamp": 1761931498,
+      "text_len": 1520
+    },
+    {
+      "id": "7567306383402519830",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7567306383402519830",
+      "timestamp": 1761900821,
+      "text_len": 186
+    },
+    {
+      "id": "7567075791754792214",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7567075791754792214",
+      "timestamp": 1761847130,
+      "text_len": 3452
+    },
+    {
+      "id": "7566664535973793047",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7566664535973793047",
+      "timestamp": 1761751380,
+      "text_len": 1886
+    },
+    {
+      "id": "7566551690653011223",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7566551690653011223",
+      "timestamp": 1761725106,
+      "text_len": 1206
+    },
+    {
+      "id": "7565633713371925763",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7565633713371925763",
+      "timestamp": 1761511370,
+      "text_len": 1011
+    },
+    {
+      "id": "7565124817452813571",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7565124817452813571",
+      "timestamp": 1761392885,
+      "text_len": 2387
+    },
+    {
+      "id": "7564360647765462294",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7564360647765462294",
+      "timestamp": 1761214963,
+      "text_len": 2774
+    },
+    {
+      "id": "7564048196410821910",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7564048196410821910",
+      "timestamp": 1761142214,
+      "text_len": 2859
+    },
+    {
+      "id": "7563049083846479107",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7563049083846479107",
+      "timestamp": 1760909592,
+      "text_len": 1827
+    },
+    {
+      "id": "7563043501949160726",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7563043501949160726",
+      "timestamp": 1760908291,
+      "text_len": 440
+    },
+    {
+      "id": "7562562198795537686",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7562562198795537686",
+      "timestamp": 1760796228,
+      "text_len": 2106
+    },
+    {
+      "id": "7562223496185548054",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7562223496185548054",
+      "timestamp": 1760717366,
+      "text_len": 752
+    },
+    {
+      "id": "7561918488625810710",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7561918488625810710",
+      "timestamp": 1760646352,
+      "text_len": 5492
+    },
+    {
+      "id": "7561567736900439318",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7561567736900439318",
+      "timestamp": 1760564691,
+      "text_len": 1686
+    },
+    {
+      "id": "7561404967777570070",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7561404967777570070",
+      "timestamp": 1760526790,
+      "text_len": 5794
+    },
+    {
+      "id": "7559587072495947030",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7559587072495947030",
+      "timestamp": 1760103529,
+      "text_len": 2065
+    },
+    {
+      "id": "7559332056375856406",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7559332056375856406",
+      "timestamp": 1760044153,
+      "text_len": 3585
+    },
+    {
+      "id": "7558455318548679958",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7558455318548679958",
+      "timestamp": 1759840022,
+      "text_len": 1538
+    },
+    {
+      "id": "7557014363245219094",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7557014363245219094",
+      "timestamp": 1759504523,
+      "text_len": 2845
+    },
+    {
+      "id": "7556242294765063446",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7556242294765063446",
+      "timestamp": 1759324763,
+      "text_len": 2184
+    },
+    {
+      "id": "7555157937216359702",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7555157937216359702",
+      "timestamp": 1759072289,
+      "text_len": 2736
+    },
+    {
+      "id": "7554862673180101910",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7554862673180101910",
+      "timestamp": 1759003542,
+      "text_len": 1500
+    },
+    {
+      "id": "7554332570612223254",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7554332570612223254",
+      "timestamp": 1758880120,
+      "text_len": 2397
+    },
+    {
+      "id": "7554090196975881494",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7554090196975881494",
+      "timestamp": 1758823686,
+      "text_len": 4369
+    },
+    {
+      "id": "7553688228025453846",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7553688228025453846",
+      "timestamp": 1758730096,
+      "text_len": 2626
+    },
+    {
+      "id": "7553578398996598038",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7553578398996598038",
+      "timestamp": 1758704527,
+      "text_len": 569
+    },
+    {
+      "id": "7552976014553451798",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7552976014553451798",
+      "timestamp": 1758564271,
+      "text_len": 3816
+    },
+    {
+      "id": "7551823507764546838",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7551823507764546838",
+      "timestamp": 1758295932,
+      "text_len": 3604
+    },
+    {
+      "id": "7551091348099714326",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7551091348099714326",
+      "timestamp": 1758125463,
+      "text_len": 2510
+    },
+    {
+      "id": "7550354812437679382",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7550354812437679382",
+      "timestamp": 1757953976,
+      "text_len": 2560
+    },
+    {
+      "id": "7549616460587355414",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7549616460587355414",
+      "timestamp": 1757782064,
+      "text_len": 4773
+    },
+    {
+      "id": "7546749898327182614",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7546749898327182614",
+      "timestamp": 1757114646,
+      "text_len": 3855
+    },
+    {
+      "id": "7545899682552171798",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7545899682552171798",
+      "timestamp": 1756916683,
+      "text_len": 3141
+    },
+    {
+      "id": "7545138702670925078",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7545138702670925078",
+      "timestamp": 1756739506,
+      "text_len": 2229
+    },
+    {
+      "id": "7544015012717956374",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7544015012717956374",
+      "timestamp": 1756477876,
+      "text_len": 1569
+    },
+    {
+      "id": "7542949078540324118",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7542949078540324118",
+      "timestamp": 1756229693,
+      "text_len": 2132
+    },
+    {
+      "id": "7540961299899976982",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7540961299899976982",
+      "timestamp": 1755766879,
+      "text_len": 2637
+    },
+    {
+      "id": "7540697470527933718",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7540697470527933718",
+      "timestamp": 1755705451,
+      "text_len": 1578
+    },
+    {
+      "id": "7540642350205291798",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7540642350205291798",
+      "timestamp": 1755692615,
+      "text_len": 2842
+    },
+    {
+      "id": "7539896632234478870",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7539896632234478870",
+      "timestamp": 1755518990,
+      "text_len": 2021
+    },
+    {
+      "id": "7538913485770624258",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7538913485770624258",
+      "timestamp": 1755290084,
+      "text_len": 4590
+    },
+    {
+      "id": "7537067513054645526",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7537067513054645526",
+      "timestamp": 1754860287,
+      "text_len": 3978
+    },
+    {
+      "id": "7536609467861863702",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7536609467861863702",
+      "timestamp": 1754753637,
+      "text_len": 4139
+    },
+    {
+      "id": "7536147715466595586",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7536147715466595586",
+      "timestamp": 1754646129,
+      "text_len": 4469
+    },
+    {
+      "id": "7535567796713934102",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7535567796713934102",
+      "timestamp": 1754511105,
+      "text_len": 2946
+    },
+    {
+      "id": "7535053954959428886",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7535053954959428886",
+      "timestamp": 1754391468,
+      "text_len": 2703
+    },
+    {
+      "id": "7534993773697256726",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7534993773697256726",
+      "timestamp": 1754377464,
+      "text_len": 2131
+    },
+    {
+      "id": "7534451863698083094",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7534451863698083094",
+      "timestamp": 1754251280,
+      "text_len": 3629
+    },
+    {
+      "id": "7532624752188378390",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7532624752188378390",
+      "timestamp": 1753825873,
+      "text_len": 2608
+    },
+    {
+      "id": "7532160800467864854",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7532160800467864854",
+      "timestamp": 1753717853,
+      "text_len": 5094
+    },
+    {
+      "id": "7531827711241702678",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7531827711241702678",
+      "timestamp": 1753640298,
+      "text_len": 3202
+    },
+    {
+      "id": "7531411304838401302",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7531411304838401302",
+      "timestamp": 1753543348,
+      "text_len": 1715
+    },
+    {
+      "id": "7531025576723778838",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7531025576723778838",
+      "timestamp": 1753453536,
+      "text_len": 2807
+    },
+    {
+      "id": "7530732597828193558",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7530732597828193558",
+      "timestamp": 1753385321,
+      "text_len": 2287
+    },
+    {
+      "id": "7530240329094581526",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7530240329094581526",
+      "timestamp": 1753270707,
+      "text_len": 3207
+    },
+    {
+      "id": "7529877803223764246",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7529877803223764246",
+      "timestamp": 1753186300,
+      "text_len": 3912
+    },
+    {
+      "id": "7529505466293013782",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7529505466293013782",
+      "timestamp": 1753099611,
+      "text_len": 2952
+    },
+    {
+      "id": "7529179882589359382",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7529179882589359382",
+      "timestamp": 1753023803,
+      "text_len": 2851
+    },
+    {
+      "id": "7528791532552473878",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7528791532552473878",
+      "timestamp": 1752933385,
+      "text_len": 2863
+    },
+    {
+      "id": "7528467963528219926",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7528467963528219926",
+      "timestamp": 1752858047,
+      "text_len": 2339
+    },
+    {
+      "id": "7528407692352752918",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7528407692352752918",
+      "timestamp": 1752844014,
+      "text_len": 1175
+    },
+    {
+      "id": "7528023764009766166",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7528023764009766166",
+      "timestamp": 1752754622,
+      "text_len": 153
+    },
+    {
+      "id": "7525429004183047446",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7525429004183047446",
+      "timestamp": 1752150483,
+      "text_len": 1360
+    },
+    {
+      "id": "7522819594906553622",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7522819594906553622",
+      "timestamp": 1751542933,
+      "text_len": 3365
+    },
+    {
+      "id": "7522604497647029526",
+      "url": "https://www.tiktok.com/@mr.doppelklick/video/7522604497647029526",
+      "timestamp": 1751492853,
+      "text_len": 3201
+    }
+  ]
+}
