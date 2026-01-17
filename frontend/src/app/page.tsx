@@ -259,7 +259,7 @@ export default function Home() {
       </header>
 
       {/* Main Content */}
-      <div className="max-w-5xl mx-auto px-4 py-8">
+      <div className="max-w-5xl mx-auto px-4 py-8 pb-32">
         {/* Action buttons when there are messages */}
         {messages.length > 0 && !loading && (
           <div className="flex justify-between items-center mb-4">
@@ -451,7 +451,7 @@ export default function Home() {
       </div>
 
       {/* Input Area */}
-      <div className="sticky bottom-0 border-t-2 border-[var(--ink)] bg-[var(--paper)]">
+      <div className="sticky bottom-0 border-t-2 border-[var(--ink)] bg-[var(--paper)] z-50">
         <form onSubmit={handleSubmit} className="max-w-5xl mx-auto px-4 py-6">
           <div className="flex gap-4 items-end">
             <div className="flex-1">
