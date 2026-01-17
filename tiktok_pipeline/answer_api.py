@@ -175,14 +175,21 @@ app.add_middleware(
 
 @app.post("/answer")
 async def answer(req: AnswerRequest):
-    unified, all_md, profile_dir = load_dataset(req.profile, req.data_root)
+    try:
+        unified, all_md, profile_dir = load_dataset(req.profile, req.data_root)
+    except Exception as e:
+        return {"error": f"Dataset nicht gefunden: {str(e)}", "mode": req.mode, "model": req.model, "tone": req.tone}
+
     records = unified.get("records", [])
     system_prompt = get_system_prompt(req.tone)
 
     if req.mode == "full":
         context = all_md
         user = f"FRAGE: {req.question}\n\nKONTEXT ({len(records)} TikTok-Transkripte von @mr.doppelklick):\n{context}"
-        answer_text, provider = get_answer(req.model, system_prompt, user)
+        try:
+            answer_text, provider = get_answer(req.model, system_prompt, user)
+        except Exception as e:
+            return {"error": f"API Fehler: {str(e)}", "mode": req.mode, "model": req.model, "tone": req.tone}
         return {
             "mode": "full",
             "answer": answer_text,
@@ -228,7 +235,10 @@ async def answer(req: AnswerRequest):
 
     context = "\n\n".join(context_parts)
     user = f"FRAGE: {req.question}\n\nKONTEXT (Top {top_k} relevante Videos von @mr.doppelklick):\n{context}"
-    answer_text, provider = get_answer(req.model, system_prompt, user)
+    try:
+        answer_text, provider = get_answer(req.model, system_prompt, user)
+    except Exception as e:
+        return {"error": f"API Fehler: {str(e)}", "mode": req.mode, "model": req.model, "tone": req.tone}
 
     return {
         "mode": "rag",

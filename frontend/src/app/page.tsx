@@ -24,11 +24,92 @@ export default function Home() {
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
+  const [exporting, setExporting] = useState(false)
   const [model, setModel] = useState<'gpt-4.1' | 'opus-4.5'>('gpt-4.1')
   const [mode, setMode] = useState<'full' | 'rag'>('full')
   const [tone, setTone] = useState<'professional' | 'casual'>('professional')
   const messagesEndRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
+
+  // PDF Export Function
+  const exportToPDF = async () => {
+    if (messages.length === 0 || exporting) return
+    setExporting(true)
+
+    try {
+      const html2pdf = (await import('html2pdf.js')).default
+      const date = new Date().toLocaleDateString('de-DE', {
+        weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+      })
+
+      let html = `
+        <div style="font-family: Georgia, serif; padding: 40px; background: #f8f7f4; color: #1a1a1a; max-width: 800px; margin: 0 auto;">
+          <div style="text-align: center; border-bottom: 3px double #1a1a1a; padding-bottom: 20px; margin-bottom: 30px;">
+            <div style="font-size: 10px; letter-spacing: 3px; margin-bottom: 8px; opacity: 0.6;">THE PAPER OF RECORD FOR THE NEXT CONTENT AGE</div>
+            <h1 style="font-size: 42px; margin: 10px 0; font-weight: normal; font-family: Georgia, serif;">The Doppelklick Times</h1>
+            <div style="font-size: 10px; letter-spacing: 2px;">${date.toUpperCase()} • VOLUME 1, ISSUE 121 • 121 TIKTOKS INDEXED</div>
+          </div>
+      `
+
+      messages.forEach((msg, i) => {
+        if (msg.role === 'user') {
+          html += `
+            <div style="margin: 25px 0 15px 0; page-break-inside: avoid;">
+              <div style="font-size: 9px; letter-spacing: 2px; opacity: 0.5; margin-bottom: 5px;">ANFRAGE ${Math.floor(i/2) + 1}</div>
+              <h2 style="font-size: 18px; font-weight: bold; margin: 0; line-height: 1.4; border-left: 3px solid #1a1a1a; padding-left: 12px;">${msg.content}</h2>
+            </div>
+          `
+        } else {
+          const content = msg.content
+            .replace(/^### (.*$)/gm, '<h4 style="font-size: 13px; font-weight: bold; margin: 12px 0 6px 0;">$1</h4>')
+            .replace(/^## (.*$)/gm, '<h3 style="font-size: 15px; font-weight: bold; margin: 15px 0 8px 0;">$1</h3>')
+            .replace(/^# (.*$)/gm, '<h2 style="font-size: 17px; font-weight: bold; margin: 18px 0 10px 0; border-bottom: 1px solid #ddd; padding-bottom: 5px;">$1</h2>')
+            .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+            .replace(/\*(.*?)\*/g, '<em>$1</em>')
+            .replace(/^- (.*$)/gm, '• $1<br/>')
+            .replace(/^> (.*$)/gm, '<div style="border-left: 2px solid #999; padding-left: 12px; margin: 8px 0; font-style: italic; opacity: 0.85;">$1</div>')
+            .replace(/\n\n/g, '</p><p style="margin: 10px 0; line-height: 1.6; text-align: justify;">')
+
+          html += `
+            <div style="border: 1px solid #1a1a1a; padding: 18px; margin-bottom: 20px; background: white; page-break-inside: avoid;">
+              <div style="border-bottom: 1px solid #eee; padding-bottom: 8px; margin-bottom: 12px; font-size: 9px;">
+                <span style="background: #1a1a1a; color: white; padding: 2px 6px; letter-spacing: 1px;">${msg.provider === 'anthropic' ? 'CLAUDE' : 'GPT'}</span>
+                <span style="margin-left: 8px; opacity: 0.6;">${msg.model || ''}</span>
+                <span style="float: right; opacity: 0.4;">${(msg.mode || 'full').toUpperCase()} / ${msg.tone === 'casual' ? 'LOCKER' : 'PROFESSIONELL'}</span>
+              </div>
+              <div style="font-size: 12px; line-height: 1.65;"><p style="margin: 10px 0; line-height: 1.6; text-align: justify;">${content}</p></div>
+            </div>
+          `
+        }
+      })
+
+      html += `
+          <div style="border-top: 2px solid #1a1a1a; margin-top: 25px; padding-top: 12px; text-align: center; font-size: 9px; letter-spacing: 2px; opacity: 0.5;">
+            @MR.DOPPELKLICK • 121 VIDEOS • POWERED BY AI • THE DOPPELKLICK TIMES V2.2
+          </div>
+        </div>
+      `
+
+      const el = document.createElement('div')
+      el.innerHTML = html
+      document.body.appendChild(el)
+
+      await html2pdf().set({
+        margin: 10,
+        filename: `doppelklick-times-${new Date().toISOString().split('T')[0]}.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      }).from(el).save()
+
+      document.body.removeChild(el)
+    } catch (err) {
+      console.error('PDF Export Error:', err)
+      alert('Fehler beim PDF-Export.')
+    } finally {
+      setExporting(false)
+    }
+  }
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -179,6 +260,34 @@ export default function Home() {
 
       {/* Main Content */}
       <div className="max-w-5xl mx-auto px-4 py-8">
+        {/* Action buttons when there are messages */}
+        {messages.length > 0 && !loading && (
+          <div className="flex justify-between items-center mb-4">
+            <button
+              onClick={() => setMessages([])}
+              className="text-[10px] uppercase tracking-[0.15em] opacity-50 hover:opacity-100 transition-opacity border border-[var(--ink)]/30 px-3 py-1"
+            >
+              ← Neue Anfrage
+            </button>
+            <button
+              onClick={exportToPDF}
+              disabled={exporting}
+              className="flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] border border-[var(--ink)] px-4 py-2 hover:bg-[var(--ink)] hover:text-[var(--paper)] transition-colors disabled:opacity-50"
+            >
+              {exporting ? (
+                'Exportiere...'
+              ) : (
+                <>
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  Als PDF speichern
+                </>
+              )}
+            </button>
+          </div>
+        )}
+
         {messages.length === 0 ? (
           /* Welcome / Questions Grid */
           <div className="animate-in">
@@ -193,7 +302,7 @@ export default function Home() {
                     <em>Content</em>
                   </h2>
                   <p className="mt-6 text-sm leading-relaxed max-w-md">
-                    121 TikTok-Transkripte. Ein AI-Gehirn. Frag mich alles uber
+                    121 TikTok-Transkripte. Ein AI-Gehirn. Frag mich alles über
                     Content Marketing, Personal Branding und Social Media Strategie.
                   </p>
                   <div className="mt-6 flex items-center gap-4 text-[10px] uppercase tracking-[0.15em]">
@@ -297,7 +406,7 @@ export default function Home() {
                         </span>
                       </div>
                       <span className="text-[10px] uppercase tracking-[0.15em] opacity-50">
-                        {msg.mode?.toUpperCase()} / {msg.tone === 'professional' ? 'PROFESSIONELL' : 'LOCKER'}
+                        {msg.mode?.toUpperCase() || 'FULL'} / {msg.tone === 'casual' ? 'LOCKER' : 'PROFESSIONELL'}
                       </span>
                     </div>
                     <div className="prose prose-neutral max-w-none">
